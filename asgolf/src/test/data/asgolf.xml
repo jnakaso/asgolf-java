@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GolfClub>
+	<Seasons>
+		<Season seasonID="2010" />
+	</Seasons>
+	<PlayerHistory>
+		<Player playerID="1" firstName="Bruce" lastName="Kaneshiro"
+			active="yes" hdcp="7.18">
+			<Season seasonID="2010" points="43.50" earnings="$62.00" kps="9"
+				attendance="10" />
+		</Player>
+		<Player playerID="64" firstName="Nate" lastName="Nouchi"
+			active="yes" hdcp="7.18">
+			<Season seasonID="2010" points="43.50" earnings="$62.00" kps="9"
+				attendance="10" />
+		</Player>
+	</PlayerHistory>
+	<Courses>
+		<Course courseID="1" name="Auburn">
+			<tee name="RED">
+				<rating>68.3</rating>
+				<slope>115.0</slope>
+				<holePars>4,3,4,4,4,5,4,3,5,4,5,3,4,4,4,3,4,4</holePars>
+				<holeHdcp>11,17,5,15,1,3,9,13,7,10,4,18,12,14,2,16,6,8</holeHdcp>
+			</tee>
+			<tee name="WHITE" />
+		</Course>
+	</Courses>
+	<Tournament tournamentID="11" seasonID="2010" course="Auburn"
+		courseID="1" type="" date="Apr 18, 2010" slope="69.00" rating="115.00">
+		<winner>
+			<player playerID="1">Bruce Kaneshiro</player>
+			<flight>A</flight>
+			<points>9.0</points>
+			<finish>A1</finish>
+			<earnings>$20.00</earnings>
+			<net>68</net>
+		</winner>
+		<kp>
+			<player playerID="64">Nate Nouchi</player>
+			<flight>A</flight>
+			<hole>A05</hole>
+		</kp>
+		<round roundID="12">
+			<player playerID="1">Dan Tamashiro</player>
+			<flight>B</flight>
+			<hdcp>19</hdcp>
+			<front>48</front>
+			<back>42</back>
+			<total>90</total>
+			<frontNet>38.5</frontNet>
+			<backNet>32.5</backNet>
+			<totalNet>71.0</totalNet>
+			<adjusted>90.0</adjusted>
+			<accepted>*</accepted>
+			<scores>5,5,5,6,4,5,5,7,6,4,5,4,5,6,4,5,5,4</scores>
+		</round>
+	</Tournament>
+</GolfClub>

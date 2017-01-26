@@ -1,0 +1,141 @@
+<div ng-controller="tournamentEditorCtrl as ctrl">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="sub-header" style="margin-top: 30px">
+				<button class="btn btn-default" style="margin-top: -15px" type="button" ng-click="ctrl.cancel()" title="Cancel Player">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<span>Cancel</span>
+				</button>
+				<button class="pull-right btn btn-default" style="margin-top: -15px" type="button" ng-click="ctrl.save()" title="Save Player">
+					<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+					<span>Done</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel">
+				<div class="panel-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Course:</label>
+							<div class="col-sm-3">
+								<select class="form-control" ng-model="ctrl.courseId" ng-options="course.id as course.name for course in ctrl.courses | orderBy:'name'">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Type:</label>
+							<div class="btn-group col-sm-10">
+								<label class="btn btn-default" ng-model="ctrl.tournament.type" uib-btn-radio="'NORMAL'">Regular</label> <label class="btn btn-default"
+									ng-model="ctrl.tournament.type" uib-btn-radio="'DAY_ONE'">Day One</label> <label class="btn btn-default" ng-model="ctrl.tournament.type"
+									uib-btn-radio="'DAY_TWO'">Day Two</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Date:</label>
+							<div class="col-sm-4">
+								<p class="input-group col-sm-7">
+									<input type="text" class="form-control" uib-datepicker-popup="MM-dd-yyyy" ng-model="ctrl.tournament.date" is-open="ctrl.status.opened"
+										ng-required="true" close-text="Close" /> <span class="input-group-btn">
+										<button type="button" class="btn btn-default"
+											ng-click="ctrl.openDate($event)">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Rating:</label>
+							<div class="col-sm-2">
+								<input ng-model="ctrl.tournament.rating " string-to-number type="number" step="0.1" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Slope</label>
+							<div class="col-sm-2">
+								<input ng-model="ctrl.tournament.slope" type="number" class="form-control" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<!-- Nav tabs -->
+		<div class="col-sm-12">
+			<uib-tabset>
+				<uib-tab heading="Rounds">
+					<h3>
+						<button class="btn btn-default" style="font-size: 12pt" ng-click="ctrl.newRound()">
+					<span class="glyphicon glyphicon-plus"></span> 
+					<span>Add</span>
+				</button>
+					</h3>
+					<table class="col-sm-12 table table-bordered">
+						<tr>
+							<th>&nbsp;</th>
+							<th>FLT</th>
+							<th>Player</th>
+							<th>HCP</th>
+							<th>FRT</th>
+							<th>BCK</th>
+							<th>TOT</th>
+							<th>FN</th>
+							<th>BN</th>
+							<th>TN</th>
+						</tr>
+						<tr ng-repeat="round in ctrl.tournament.rounds |  orderBy : ['flight', 'totalNet' ]  ">
+							<td><button class="btn btn-default" style="font-size: 8pt" ng-click="ctrl.editRound(round)">
+							<span class="glyphicon glyphicon-cog"></span>
+						</button>
+								<button class="btn btn-default" style="font-size: 8pt" ng-click="ctrl.deleteRound(round)">
+							<span class="glyphicon glyphicon-minus"></span>
+						</button></td>
+							<td>{{round.flight}}</td>
+							<td>{{round.player.firstName + ' ' + round.player.lastName}}</td>
+							<td>{{round.handicap}}</td>
+							<td>{{round.front}}</td>
+							<td>{{round.back}}</td>
+							<td>{{round.total}}</td>
+							<td>{{round.frontNet}}</td>
+							<td>{{round.backNet}}</td>
+							<td>{{round.totalNet}}</td>
+						</tr>
+					</table>
+				</uib-tab>
+				<uib-tab heading="KPs">
+					<h3>
+						<button class="btn btn-default" style="font-size: 12pt" ng-click="ctrl.newKp()">
+					<span class="glyphicon glyphicon-plus"></span>
+					<span>Add</span>
+				</button>
+					</h3>
+					<div class="col-sm-6" ng-repeat="flt in ['A', 'B']">
+						<h4 class="sub-header">{{flt}}-Flight</h4>
+						<table class="table table-bordered">
+							<tr>
+								<th>&nbsp;&nbsp;&nbsp;</th>
+								<th>Player</th>
+								<th>Hole</th>
+							</tr>
+							<tr ng-repeat="kp in ctrl.tournament.kps | filter: {flight:flt}">
+								<td><button class="btn btn-default" style="font-size: 8pt" ng-click="ctrl.editKp(kp)">
+								<span class="glyphicon glyphicon-cog"></span>
+							</button>
+									<button class="btn btn-default" style="font-size: 8pt" ng-click="ctrl.deleteKp(kp)">
+								<span class="glyphicon glyphicon-minus"></span>
+							</button></td>
+								<td>{{kp.player.firstName}} {{kp.player.lastName}}</td>
+								<td>{{kp.hole}}</td>
+							</tr>
+						</table>
+					</div>
+				</uib-tab>
+			</uib-tabset>
+		</div>
+	</div>
+</div>

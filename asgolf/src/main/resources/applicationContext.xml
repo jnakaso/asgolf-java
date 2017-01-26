@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" 
+            http://www.springframework.org/schema/beans      
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+ 
+	<bean id="statsWriter" class="com.jnaka.golf.reports.json.StatsWriterImpl">
+		<property name="subReports">
+			<map>
+				<entry key="standings" value-ref="jsonStandings"  />
+				<entry key="vardon" value-ref="jsonVardon" />
+				<entry key="sandbagger" value-ref="jsonSandbagger" />
+				<entry key="mostImproved" value-ref="jsonMostImproved" />
+				<entry key="birdies" value-ref="jsonBirdies" />
+				<entry key="goodBadUgly" value-ref="jsonGoodBadUgly" />
+				<entry key="threePutt" value-ref="jsonThreePutt" />
+				<entry key="goodPuttingKp" value-ref="jsonGoodPuttingKp" />
+				<entry key="drJekyll" value-ref="jsonDrJekyll" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="recordsWriter" class="com.jnaka.golf.reports.json.StatsWriterImpl">
+		<property name="subReports">
+			<map>
+				<entry key="whereWePlayed" value-ref="jsonWhereWePlayed" />
+				<entry key="kpSweeper" value-ref="jsonKpSweeper" />
+				<entry key="bigMoney" value-ref="jsonBigMoney" />
+				<entry key="holesInOne" value-ref="jsonHolesInOne" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,143 @@
+<div class="row" ng-controller="homeCtrl as ctrl">
+	<div class="col-sm-12">
+		<fieldset>
+			<legend>Just Do It</legend>
+			<div ng-controller="alertCtrl as aCtrl">
+				<uib-alert ng-repeat="alert in aCtrl.alerts" type="{{alert.type}}"
+					close="aCtrl.closeAlert($index)">{{alert.msg}}</uib-alert>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 ">
+					<li>Create Site Info</li>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Season:</label>
+							<div class="col-sm-4">
+								<select class="form-control" ng-model="ctrl.siteSeason"
+									ng-options="season.id as season.id for season in ctrl.seasons">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-4">
+								<button class="btn btn-default" ng-click="ctrl.updateSiteInfo()">
+									<span class="glyphicon glyphicon-ok"></span>
+									<span>Create</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 ">
+					<li>Upload - Upload a new tournament</li>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Season:</label>
+							<div class="col-sm-4">
+								<select class="form-control" ng-model="ctrl.season"
+									ng-options="season.id for season in ctrl.seasons">
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Method:</label>
+							<div class="col-sm-4 btn-group">
+								<label class="btn btn-default" ng-model="ctrl.uploadMethod"
+									uib-btn-radio="'FILE'">File</label> <label
+									class="btn btn-default" ng-model="ctrl.uploadMethod"
+									uib-btn-radio="'TEXT'">Text</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-4">
+								<textarea class="form-control"
+									ng-show="ctrl.uploadMethod == 'TEXT'"
+									ng-model="ctrl.tournament">
+								</textarea>
+								<input id="uploadFile" class="form-control" type="file"
+									ng-show="ctrl.uploadMethod == 'FILE'"
+									ng-model="ctrl.uploadFile" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-4">
+								<button class="btn btn-default" ng-click="ctrl.upload()">
+									<span class="glyphicon glyphicon-upload"></span>
+									<span>Upload</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 ">
+					<li>Set Site Defaults</li>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Power Rank Season:</label>
+							<div class="col-sm-4">
+								<select class="form-control"
+									ng-model="ctrl.siteDefaults.powerRank"
+									ng-options="season.id as season.name for season in ctrl.seasons">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Current Season:</label>
+							<div class="col-sm-4">
+								<select class="form-control"
+									ng-model="ctrl.siteDefaults.currentSeason"
+									ng-options="season.id as season.id for season in ctrl.seasons">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Current Event:</label>
+							<div class="col-sm-4">
+								<select class="form-control"
+									ng-model="ctrl.siteDefaults.currentEvent"
+									ng-options="event._id as event.name for event in ctrl.events">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Next Course:</label>
+							<div class="col-sm-4">
+								<select class="form-control"
+									ng-model="ctrl.siteDefaults.nextCourseId"
+									ng-options="course.id as course.name for course in ctrl.courses | orderBy:'name'">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Show Two Day:</label>
+							<div class="col-sm-4 btn-group">
+								<label class="btn btn-default"
+									ng-model="ctrl.siteDefaults.showTwoDay" uib-btn-radio="true">Show</label>
+								<label class="btn btn-default"
+									ng-model="ctrl.siteDefaults.showTwoDay" uib-btn-radio="false">Hide</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-4">
+								<button class="btn btn-default"
+									ng-click="ctrl.updateSiteDefaults()">
+									<span class="glyphicon glyphicon-ok"></span>
+									<span>Update</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>

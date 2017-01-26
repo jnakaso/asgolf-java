@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tournament seasonID="2010" course="Maplewood"
+	date="Apr 15, 2010" slope="67.30" rating="118.00">
+	<kp>
+		<player playerID="1" >Bruce Kaneshiro</player>
+		<flight>A</flight>
+		<hole>A03</hole>
+	</kp>
+	<kp>
+		<player playerID="1" >Bruce Kaneshiro</player>
+		<flight>A</flight>
+		<hole>A06</hole>
+	</kp>
+	<kp>
+		<player playerID="3" >Mel Asato</player>
+		<flight>A</flight>
+		<hole>A12</hole>
+	</kp>
+	<kp>
+		<player playerID="32">Howard Himeno</player>
+		<flight>A</flight>
+		<hole>A14</hole>
+	</kp>
+	<kp>
+		<player playerID="53">Doyle Simons</player>
+		<flight>B</flight>
+		<hole>B02</hole>
+	</kp>
+	<kp>
+		<player playerID="20">Kiyo Sawa</player>
+		<flight>B</flight>
+		<hole>B06</hole>
+	</kp>
+	<kp>
+		<player playerID="11">Ken Yamabe</player>
+		<flight>B</flight>
+		<hole>B14</hole>
+	</kp>
+	<round>
+		<player playerID="10">Rich Kirihara</player>
+		<flight>A</flight>
+		<hdcp>20</hdcp>
+		<scores>4,3,4,5,6,3,7,4,5,6,5,4,6,3,6,4,5,5</scores>
+	</round>
+	<round>
+		<player playerID="55">Ralph Iboshi</player>
+		<flight>A</flight>
+		<hdcp>13</hdcp>
+		<scores>5,3,4,4,5,3,6,5,4,5,6,3,4,3,6,4,5,5</scores>
+	</round>
+	<round >
+		<player playerID="18">Don Chikuma</player>
+		<flight>B</flight>
+		<hdcp>29</hdcp>
+		<scores>6,4,5,5,5,5,7,4,5,6,7,4,5,4,6,6,5,6</scores>
+	</round>
+	<round >
+		<player playerID="43">Rich Nobuyama</player>
+		<flight>B</flight>
+		<hdcp>23</hdcp>
+		<scores>5,3,5,5,7,4,6,5,4,6,6,4,5,4,6,6,6,5</scores>
+	</round>
+	<round>
+		<player playerID="27">Roy Okamoto</player>
+		<flight>B</flight>
+		<hdcp>33</hdcp>
+		<scores>5,3,5,7,8,3,10,6,4,6,6,7,5,3,6,7,7,6</scores>
+	</round>
+	<round>
+		<player playerID="20">Kiyo Sawa</player>
+		<flight>B</flight>
+		<hdcp>36</hdcp>
+		<scores>6,4,5,6,6,3,10,5,6,8,9,6,5,4,6,7,5,7</scores>
+	</round>
+</Tournament>

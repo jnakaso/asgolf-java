@@ -1,0 +1,200 @@
+<div class="row">
+	<div class="col-sm-12" ng-controller="seasonsCtrl as ctrl">
+		<fieldset>
+			<asgolf-page-legend title="Seasons" alt-title="Add Season" action="ctrl.newSeason()" >
+			</asgolf-page-legend>
+			<div class="col-sm-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div ng-repeat="season in ctrl.seasons | orderBy:'-id'"
+							style="cursor: pointer">
+							<a href="#/season/{{season.id}}">{{season.id}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10">
+				<div ng-show="ctrl.mode == null">
+					<ul>
+						<li>Click over there on the left</li>
+						<li>Add a new season!</li>
+					</ul>
+				</div>
+				<div ng-show="ctrl.mode == 'edit'">
+					<h4 class="sub-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<button class="btn btn-default" style="margin-top: -15px"
+									type="button" ng-click="ctrl.cancel()" title="Save Edit">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<span>Cancel</span>
+								</button>
+								<button class="pull-right btn btn-default"
+									style="margin-top: -15px" type="button" ng-click="ctrl.save()"
+									title="Save Season">
+									<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+									<span>Done</span>
+								</button>
+							</div>
+						</div>
+					</h4>
+					<div>
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Season:</label>
+								<div class="col-sm-4">
+									<p class="form-control-static">{{ctrl.season.id}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Scoring Policy:</label>
+								<div class="col-sm-4">
+									<select class="form-control"
+										ng-model="ctrl.season.scoringPolicy">
+										<option value="DEFAULT_10">{{ 'DEFAULT_10'|
+											scoringPolicy}}</option>
+										<option value="DEFAULT_20">{{ 'DEFAULT_20'|
+											scoringPolicy}}</option>
+										<option value="DEFAULT_2015">{{ 'DEFAULT_2015'|
+											scoringPolicy}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Handicap Policy:</label>
+								<div class="col-sm-4">
+									<select class="form-control"
+										ng-model="ctrl.season.handicapPolicy">
+										<option value="FIVE_OF_TEN">{{ 'FIVE_OF_TEN'|
+											handicapPolicy}}</option>
+										<option value="TEN_OF_TWENTY">{{ 'TEN_OF_TWENTY'|
+											handicapPolicy}}</option>
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div ng-show="ctrl.mode == 'read'">
+					<h3 class="sub-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<span>{{ctrl.season.id}}</span> <span style="font-size: 14px">{{ctrl.season.scoringPolicy
+									| scoringPolicy}} | {{ctrl.season.handicapPolicy |
+									handicapPolicy}}</span>
+								<div class="btn-toolbar pull-right">
+									<button class="btn btn-default"
+										style="margin-left: 15px" type="button" ng-click="ctrl.edit()"
+										title="Edit Season">
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										<span>Edit</span>
+									</button>
+									<button class="btn btn-default"
+										style="margin-left: 15px" type="button" ng-click="ctrl.updateTotals()"
+										title="Update Season Totals">
+										<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+										<span>Update</span>
+									</button>
+									<button class="btn btn-default" type="button"
+										ng-click="ctrl.newTournament()" title="New Tournament">
+										<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										<span>Add Tournament</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</h3>
+
+				</div>
+				<div ng-show="ctrl.tournaments != null">
+					<div id="Summary" class="col-sm-12">
+						<uib-tabset> <uib-tab heading="Points">
+						<div id="SummaryPoints" class="tab-pane active table-responsive">
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Player</th>
+											<th>Points</th>
+											<th
+												ng-repeat="tour in ctrl.tournaments | orderBy:'id':false ">
+												<a href="#tournament/{{tour.id}}"
+												title="{{tour.course.name}}" ng-click="anchor(tour)">{{$index
+													+ 1}}</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="entry in ctrl.stats ">
+											<td>{{entry.name}}</td>
+											<td>{{entry.points}}</td>
+											<td ng-repeat="pts in entry.pointsByTour track by $index">
+												<span ng-show="pts != 0">{{ pts }}</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</uib-tab> <uib-tab heading="Earnings">
+						<div id="SummaryEarnings" class="tab-pane table-responsive">
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Player</th>
+											<th>Earnings</th>
+											<th
+												ng-repeat="tour in ctrl.tournaments | orderBy:'id':false ">
+												<a href="#tournament/{{tour.id}}"
+												title="{{tour.course.name}}" ng-click="anchor(tour)">{{$index
+													+ 1}}</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="entry in ctrl.stats ">
+											<td>{{entry.name}}</td>
+											<td>{{entry.earnings | currency }}</td>
+											<td ng-repeat="pts in entry.earningsByTour track by $index">
+												<span ng-show="pts != 0">{{ pts | currency }}</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</uib-tab> <uib-tab heading="KPs">
+						<div id="SummaryKps" class="tab-pane table-responsive">
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Player</th>
+											<th>KPs</th>
+											<th
+												ng-repeat="tour in ctrl.tournaments | orderBy:'id':false ">
+												<a href="#tournament/{{tour.id}}"
+												title="{{tour.course.name}}" ng-click="anchor(tour)">{{$index
+													+ 1}}</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="entry in ctrl.stats ">
+											<td>{{entry.name}}</td>
+											<td>{{entry.kps}}</td>
+											<td ng-repeat="pts in entry.kpsByTour track by $index"><span
+												ng-show="pts != 0">{{ pts }}</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</uib-tab> </uib-tabset>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>

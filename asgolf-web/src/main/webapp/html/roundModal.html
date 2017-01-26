@@ -1,0 +1,75 @@
+<div>
+	<div class="modal-header">
+		<h4 class="modal-title" id="myModalLabel">{{ctrl.title}}</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Player:</label>
+				<div class="col-sm-4">
+					<select ng-model="ctrl.round.player" class="form-control" ng-change="ctrl.changePlayer()"
+						ng-options="(player.firstName + ' ' + player.lastName) for player in (ctrl.players | filter:{'active':true} | orderBy:'lastName') track by player.id ">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">HDCP:</label>
+				<div class="col-sm-2">
+					<input ng-model="ctrl.round.handicap" step="0" type="number"
+						class="form-control" ng-change="ctrl.changeHandicap()" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Flight:</label>
+				<div class="col-sm-2">
+					<select ng-model="ctrl.round.flight" class="form-control"
+						ng-options="(flight) for flight in ctrl.flights">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Scores:</label>
+				<div class="col-sm-10">
+					<table id="scores" class="table-bordered">
+						<tr>
+							<td ng-repeat="aa in [1,2,3,4,5,6,7,8,9]"><span>{{aa}}</span></td>
+							<td>FRT</td>
+							<td>F.NET</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td ng-repeat="a in [0,1,2,3,4,5,6,7,8]"><input
+								type="number" style="width: 50px"
+								ng-model="ctrl.round.scores[a]" ng-change="ctrl.changeScore()" /></td>
+							<td><span>{{ctrl.round.front}}</span></td>
+							<td><span>{{ctrl.round.frontNet}}</span></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td ng-repeat="a in [10,11,12,13,14,15,16,17,18]">{{a}}</td>
+							<td>BCK</td>
+							<td>B.NET</td>
+							<td>TOT</td>
+							<td>T.NET</td>
+						</tr>
+						<tr>
+							<td ng-repeat="b in [9,10,11,12,13,14,15,16,17]"><input
+								type="number" style="width: 50px"
+								ng-model="ctrl.round.scores[b]" ng-change="ctrl.changeScore()" /></td>
+							<td><span>{{ctrl.round.back}}</span></td>
+							<td><span>{{ctrl.round.backNet}}</span></td>
+							<td><span>{{ctrl.round.total}}</span></td>
+							<td><span>{{ctrl.round.totalNet}}</span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" ng-click="ctrl.cancel()">Cancel</button>
+		<button type="button" class="btn btn-primary" ng-click="ctrl.save()">Save</button>
+	</div>
+</div>

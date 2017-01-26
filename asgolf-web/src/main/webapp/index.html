@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" cache="./cache.manifest">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="AS Golf Editor" />
+<meta name="author" content="" />
+<!-- Startup configuration -->
+<link rel="manifest" href="manifest.js" />
+<link rel="shortcut icon" href="../../assets/ico/favicon.ico" />
+<title>AS Golf</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="css/dashboard.css" rel="stylesheet" />
+<link href="css/ui-grid.min.css" rel="stylesheet" />
+<link href="css/asgolf.css" rel="stylesheet" />
+</head>
+<body ng-app="ASGolf">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">AS Golf</a>
+			</div>
+			<div class="navbar-collapse collapse"
+				ng-controller="mainCtrl as ctrl">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="#/seasons"><small>Seasons</small></a></li>
+					<li><a href="#/players"><small>Players</small></a></li>
+					<li><a href="#/courses"><small>Courses</small></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button class="btn btn-default" style="margin:8px" type="button"
+							ng-click="ctrl.save()" title="Save File">
+							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+							<span>Save</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" style="margin-top: 5px">
+		<div ng-view></div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/lib/angular/1.5.0/angular.js"></script>
+	<script src="js/lib/angular/1.5.0/angular-resource.min.js"></script>
+	<script src="js/lib/angular/1.5.0/angular-route.min.js"></script>
+	<script src="js/lib/ui-bootstrap-tpls-0.14.2.min.js"></script>
+	<script src="js/lib/ui-grid/3.0.7/ui-grid.min.js"></script>
+	<script src="js/lib/xml2json.min.js"></script>
+	<script src="js/app/asgolf.js"></script>
+	<script src="js/app/asgolf-core.js"></script>
+	<script src="js/app/asgolf-alert.js"></script>
+	<script src="js/app/asgolf-seasons.js"></script>
+	<script src="js/app/asgolf-courses.js"></script>
+	<script src="js/app/asgolf-players.js"></script>
+	<script src="js/app/asgolf-tournaments.js"></script>
+	<script src="js/app/asgolf-tournament-editor.js"></script>
+	<script src="js/app/asgolf-home.js"></script>
+</body>
+</html>

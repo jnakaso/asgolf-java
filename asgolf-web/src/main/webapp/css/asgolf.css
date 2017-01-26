@@ -1,0 +1,31 @@
+
+.asgolf-grid {
+	width:100%;
+	height:400px;
+	margin-top:10px;
+}
+
+#scores td {
+	width: 50px;
+	text-align: center;
+}
+
+#pars td, th {
+	width: 50px;
+	text-align: center;
+}
+
+#pars input {
+	width: 50px;
+	text-align: right;
+}
+
+#hdcps td, th {
+	width: 50px;
+	text-align: center;
+}
+
+#hdcps input {
+	width: 50px;
+	text-align: right;
+}

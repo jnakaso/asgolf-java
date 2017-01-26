@@ -1,0 +1,121 @@
+<div class="row">
+	<div class="col-sm-12" ng-controller="playersCtrl as ctrl">
+		<fieldset>
+			<asgolf-page-legend title="Players" alt-title="Add Player" action="ctrl.newPlayer()" >
+			</asgolf-page-legend>
+			<div class="col-sm-3">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="padding: 3px">
+						<form class="form-inline">
+							<div class=" col-sm-12 input-group" style="padding: 3px">
+								<select class="input-group-addon form-control"
+									ng-model="ctrl.hints.active">
+									<option value="">All</option>
+									<option value="true">Active</option>
+									<option value="false">Inactive</option>
+								</select>
+							</div>
+							<div class="input-group col-sm-12">
+
+								<input type="search" ng-model="ctrl.hints.name"
+									class="form-control" placeholder="Search for..." /> <a
+									class="input-group-addon" ng-show="ctrl.hints.name != null"
+									ng-click="ctrl.hints.name = null"> <span
+									class="glyphicon glyphicon-remove"></span>
+								</a>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body">
+						<div
+							ng-repeat="player in ctrl.players | filter: ctrl.filterPlayers as results"
+							style="cursor: pointer">
+							<a href="#/player/{{player.id}}?hints={{ctrl.hints}}">{{player.firstName}}
+								{{player.lastName}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9">
+				<div ng-show="ctrl.mode == null">
+					<ul>
+						<li>Click over there on the left</li>
+						<li>Add a new player!</li>
+					</ul>
+				</div>
+				<div ng-show="ctrl.mode == 'read'">
+					<h4 class="sub-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<span>{{ctrl.player.firstName}} {{ctrl.player.lastName}}</span>
+								<button class="pull-right btn btn-default"
+									style="margin-top: -15px" type="button" ng-click="ctrl.edit()"
+									title="Edit Player">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</span>
+								</button>
+							</div>
+						</div>
+					</h4>
+				</div>
+				<div ng-show="ctrl.mode == 'edit'">
+					<h4 class="sub-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<button class="btn btn-default" style="margin-top: -15px"
+									type="button" ng-click="ctrl.cancel()" title="Cancel Player">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"> Cancel</span>
+								</button>
+								<button class="pull-right btn btn-default"
+									style="margin-top: -15px" type="button" ng-click="ctrl.save()"
+									title="Save Player">
+									<span class="glyphicon glyphicon-save" aria-hidden="true"> Done</span>
+								</button>
+							</div>
+						</div>
+					</h4>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name:</label>
+							<div class="col-sm-4">
+								<input ng-model="ctrl.player.firstName" type="text"
+									class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name:</label>
+							<div class="col-sm-4">
+								<input ng-model="ctrl.player.lastName" type="text"
+									class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Active:</label>
+							<div class="btn-group col-sm-10">
+								<label class="btn btn-default" ng-model="ctrl.player.active"
+									uib-btn-radio="true">Yes</label> <label class="btn btn-default"
+									ng-model="ctrl.player.active" uib-btn-radio="false">No</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div ng-show="ctrl.player != null">
+					<uib-tabset> <uib-tab heading="Seasons Summaries">
+					<div class="row">
+						<div class="col-sm-12">
+							<div id="playerSummary" ui-grid="ctrl.gridSummaries"
+								class="asgolf-grid"></div>
+						</div>
+					</div>
+					</uib-tab> <uib-tab heading="Scores">
+					<div class="row">
+						<div class="col-sm-12">
+							<div id="playerHistory" ui-grid="ctrl.gridHistories"
+								class="asgolf-grid"></div>
+						</div>
+					</div>
+					</uib-tab> </uib-tabset>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
